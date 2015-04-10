@@ -68,7 +68,9 @@ class NetapiClient(object):
 
         :return: Returns the result from the execution module
         '''
-        local = salt.client.get_local_client(mopts=self.opts)
+        # local = salt.client.get_local_client(mopts=self.opts)
+        import salt.client.restapi
+        local = salt.client.restapi.LocalClient(mopts=self.opts)
         return local.cmd(*args, **kwargs)
 
     def local_batch(self, *args, **kwargs):
